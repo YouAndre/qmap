@@ -15,27 +15,26 @@ from __future__ import annotations
 
 import contextlib
 import pickle
+from importlib import resources
 from itertools import combinations
 from pathlib import Path
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 import rustworkx as rx
 import rustworkx.visualization as rxviz
 
-from ...._compat.importlib import resources
-
 if TYPE_CHECKING:
     from collections.abc import Iterable
+    from typing import TypeAlias
 
     from matplotlib import figure
     from qiskit.providers import BackendV1, BackendV2
 
-    from ...._compat.typing import TypeAlias
     from ....sc import Architecture
 
 
 with contextlib.suppress(TypeError):
-    Graph: TypeAlias = rx.PyGraph[int, Optional[int]]
+    Graph: TypeAlias = rx.PyGraph[int, int | None]
 
 PartialOrder: TypeAlias = dict[tuple[int, int], set[tuple[int, int]]]
 
